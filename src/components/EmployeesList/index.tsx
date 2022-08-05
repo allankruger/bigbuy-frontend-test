@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import { Header, Container, SearchBar, InputContainer } from "./styles";
 import Button from "../Button";
 import TableActionButton from "../TableActionButton";
 import Modal from "../Modal";
 import { SearchIcon, PersonPlusIcon } from "../../assets";
+import Pagination from "@mui/material/Pagination";
 
 import dataJson from "../../api/response/data.json";
 
@@ -18,6 +19,30 @@ export default function EmployeesList() {
   const [filteredData, setFilteredData] = useState<
     { id: number; name: string; email: string; age: number; salary: number }[]
   >([]);
+
+  const searchedEmployee = handleSearchEmployee(searchEmployee);
+  const newData = !searchedEmployee ? data : searchedEmployee;
+  const dataToRender = filteredData.length === 0 ? newData : filteredData;
+  const [pageSize, setPageSize] = useState(6);
+  const [page, setPage] = useState(1);
+  const [paginationData, setPaginationData] = useState(
+    dataToRender.slice(0, pageSize)
+  );
+
+  useMemo(() => {
+    setPaginationData(dataToRender.slice(0, pageSize));
+  }, [pageSize]);
+
+  function handlePageChange(event: any, value: number) {
+    setPage(value);
+    setPaginationData(
+      dataToRender.slice(0 + pageSize * (value - 1), pageSize * value)
+    );
+  }
+
+  const changeListSize = (event: any) => {
+    setPageSize(parseInt(event.target.value, 10));
+  };
 
   function handleOpenModal(modalType: string, employeeId?: any) {
     if (modalType === "edit") {
@@ -93,10 +118,6 @@ export default function EmployeesList() {
     setFilteredData(filtered);
   }
 
-  const searchedEmployee = handleSearchEmployee(searchEmployee);
-  const newData = !searchedEmployee ? data : searchedEmployee;
-  const dataToRender = filteredData.length === 0 ? newData : filteredData;
-
   return (
     <Container>
       <Header>
@@ -139,7 +160,7 @@ export default function EmployeesList() {
           </tr>
         </thead>
         <tbody>
-          {dataToRender.map((employee: any) => (
+          {paginationData.map((employee: any) => (
             <tr key={employee.id}>
               <td>{employee.name}</td>
               <td>{employee.age}</td>
@@ -160,6 +181,30 @@ export default function EmployeesList() {
           ))}
         </tbody>
       </table>
+
+      <div className="paginationContainer">
+        <select onChange={changeListSize}>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+
+        <Pagination
+          className="pagination"
+          count={Math.ceil(dataToRender.length / pageSize)}
+          page={page}
+          onChange={handlePageChange}
+          shape="rounded"
+          color="primary"
+        />
+      </div>
 
       <Modal
         modalTitle={modalTitle}

@@ -33,6 +33,25 @@ export const Container = styled.div`
     gap: 10px;
   }
 
+  .paginationContainer {
+    flex-direction: column;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+
+    li {
+      margin-left: -5px;
+    }
+  }
+
   @media only screen and (min-width: 768px) {
     table {
       font-size: 1rem;
