@@ -5,9 +5,9 @@ Creo que lo principal punto a mejorar és la organización del código, también
 Utilizé styled-components en algunos componentes para estilos baseados em props aliado con lo uso de TypeScript. 
 Todos los icons fueron exportados desde Figma para mantener la identidad visual dela app.
 
-- Para executar la aplicación:
--- yarn 
--- yarn start
+### Para executar la aplicación:
+- yarn 
+- yarn start
 
-- Una versión web funcional está disponible en:
+### Una versión web funcional está disponible en:
 -- https://bigbuy-frontend-test.vercel.app
