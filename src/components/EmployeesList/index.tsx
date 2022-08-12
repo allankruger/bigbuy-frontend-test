@@ -31,7 +31,7 @@ export default function EmployeesList() {
 
   useMemo(() => {
     setPaginationData(dataToRender.slice(0, pageSize));
-  }, [pageSize]);
+  }, [pageSize, data]);
 
   function handlePageChange(event: any, value: number) {
     setPage(value);
