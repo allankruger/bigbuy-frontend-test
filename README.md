@@ -13,6 +13,9 @@ A React mobile-first application made with Typescript and StyledComponents
 ## Web demo
 https://bigbuy-frontend-test.vercel.app
 
+## Figma File
+https://www.figma.com/file/dxkGfPtOpttbg2tZs8RADr/Prueba-Front-BigBuy-(Copy)?node-id=0%3A1
+
 ## Features
 
 - Add employee;
