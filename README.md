@@ -1,4 +1,4 @@
-![Mobile version screenshot](public\screenshot.jpg?raw=true "Big Buy - Home Screen")
+![Mobile version screenshot](public/screenshot.jpg?raw=true "Big Buy - Home Screen")
 ### This is a mobile first application developed for a frontend developer skill test.
 
 
